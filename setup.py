@@ -20,7 +20,7 @@ setup(
         "Programming Language :: Python :: 3.9",
         "Operating System :: OS Independent",
     ],
-    install_requires=[],
+    install_requires=["pandas>=2.0.0", "scipy>=1.10.1", "sklearn>=0.0"],
     extras_require={
         "dev": ["pytest>=7.0", "twine>=4.0.2"],
     },
