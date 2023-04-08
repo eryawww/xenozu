@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np
 from cleaning import conf_dtype
 
+# NOT TESTED
 def validate_FE_train_test(train: pd.DataFrame, test: pd.DataFrame, target: str):
     
     # assert time == [] and cat == []

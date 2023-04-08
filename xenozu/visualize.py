@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import scipy.stats as stats
 
+# NOT TESTED
 def compare_transform_to_normal(df: pd.DataFrame, col: str, func=[np.log]):
     """
         Visualize different between transformation and non transformation
@@ -40,7 +41,7 @@ def compare_transform_to_normal(df: pd.DataFrame, col: str, func=[np.log]):
         plt.title("")
         plt.xlabel("")
     plt.tight_layout()
-
+# NOT TESTED
 def show_correlation_to_variable(df: pd.DataFrame, col:str):
     """
         Visualize a beauty visualization of correlation related to one columns
@@ -51,7 +52,7 @@ def show_correlation_to_variable(df: pd.DataFrame, col:str):
         _df.loc['Value', col] = corr_series[col]
     sorted_index = _df.loc['Value', :].sort_values(ascending=False).index
     return _df[sorted_index].style.background_gradient(sns.diverging_palette(20, 145, n=10, center='dark', as_cmap=True), vmin=-1, vmax=1, subset=sorted_index)
-
+# NOT TESTED
 def plot_tf_hist(hist, test_score:int = None):
     fig = plt.figure(figsize=(20, 7))
     nrows, ncols = int(np.ceil(len(hist.history)/2)), 2

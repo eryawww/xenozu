@@ -2,6 +2,7 @@ import pandas as pd
 import seaborn as sns
 import numpy as np
 
+# NOT TESTED
 def compare_summary_stats_diff(target:pd.DataFrame, pred:pd.DataFrame):
     index = ['mean', 'std', 'min', '25%', '50%', '75%', 'max']
     cols = ['target', 'pred', 'diff']
@@ -14,6 +15,7 @@ def compare_summary_stats_diff(target:pd.DataFrame, pred:pd.DataFrame):
 
     return _df.style.background_gradient(sns.color_palette("vlag", as_cmap=True), subset='diff')
 
+# NOT TESTED
 def print_score(train, target_train, val, target_val, model, loss_fn: callable, eval = None, target_eval = None):
     # TODO Add Kfold interface
     print('='*20)

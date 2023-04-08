@@ -33,6 +33,7 @@ def conf_dtype(df:pd.DataFrame, test:pd.DataFrame, return_dtypes_list: bool = Fa
         return _df, _test, (time, continu, discret, categorical)
     return _df, _test
 
+# NOT TESTED
 def unique_df(df:pd.DataFrame, test:pd.DataFrame, with_continue_vars:bool=True):
     """
         Get unique DataFrame preview. Data is filtered exclude floating point
@@ -57,6 +58,7 @@ def unique_df(df:pd.DataFrame, test:pd.DataFrame, with_continue_vars:bool=True):
     _sorted_cols = _df.loc['train', cols].sort_values(ascending=False)
     return _df[['total']+list(_sorted_cols.index)].style.background_gradient(cmap=sns.dark_palette("seagreen", as_cmap=True), vmin=0, vmax=len(df) , subset=pd.IndexSlice['train', cols]).background_gradient(cmap=sns.dark_palette('seagreen', as_cmap=True), vmin=0, vmax=len(test), subset=pd.IndexSlice['test', cols])
 
+# NOT TESTED
 def nan_df(df:pd.DataFrame, test:pd.DataFrame):
     """
         Get unique DataFrame preview. Data is filtered exclude floating point
