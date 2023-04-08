@@ -12,6 +12,11 @@ def load_data():
     test = pd.read_csv('data/covid.test.csv')
     return df, test
 
+def load_data_with_target():
+    df, test = load_data()
+    target = df.pop('tested_positive.2')
+    return df, test, target
+
 def test_conf_dtype():
     df, test = load_data()
     _, _, dtype = cleaning.conf_dtype(df, test, return_dtypes_list=True)
@@ -25,4 +30,13 @@ def test_conf_dtype():
         assert set(output) == set(expected)
 
 def test_train_test_split():
-    pass
+    for val_size, test_size in zip([.5, .2, .9], [.1, 0, .09]):
+        train, _, target = load_data_with_target()
+        original_len = len(train)
+        if test_size > 0:
+            train, target_train, val, target_val, test, target_test = modelling.train_test_split(train, target=target, val_size=val_size, test_size=test_size)
+        else:
+            train, target_train, val, target_val = modelling.train_test_split(train, target=target, val_size=val_size, test_size=test_size)
+            test, target_test = [], []
+        assert (len(train)+len(val)+len(test)) == original_len and (original_len*val_size) == len(val) and int(original_len*test_size) == len(test) and int(original_len*np.round(1-val_size-test_size, 2)) == len(train)
+        assert (len(target_train)+len(target_val)+len(target_test)) == original_len and int(original_len*val_size) == len(target_val) and int(original_len*test_size) == len(target_test) and int(original_len*np.round(1-val_size-test_size, 2)) == len(target_train)
